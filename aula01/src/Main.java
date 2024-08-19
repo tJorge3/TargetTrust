@@ -2,30 +2,39 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        ValoresDigitados Valores = lerValores();
         System.out.println("Qual operação você deseja fazer? \n" +
                 "1 - Somar\n" +
-                "2 - Subtrair");
+                "2 - Subtrair\n" +
+                "3 - Multiplicar\n" +
+                "4 - Dividir");
         Scanner sc = new Scanner(System.in);
 
         try {
-            var objetoCalculadora = new MinhaCalculadora();
+            var calculadora = new MinhaCalculadora();
             int num = sc.nextInt();
+            int resultado;
 
-            if(num == 1){
-                System.out.println("Digite os Valores a serem somados separados por ENTER: ");
-                ValoresDigitados Valores = lerValores();
-                int soma = objetoCalculadora.soma(Valores.valorA, Valores.valorB);
-                System.out.println("Resultado: " + soma);
-            }
-
-            else if(num == 2){
-                System.out.println("Digite os valores a serem subtraídos separados por ENTER: ");
-                ValoresDigitados Valores = lerValores();
-                int subtr = objetoCalculadora.subtr(Valores.valorA, Valores.valorB);
-                System.out.println("Resultado: " + subtr);
-            }
-            else{
-                System.out.println("Opção inválida!");
+            switch (num) {
+                case 1:
+                    resultado = calculadora.soma(Valores.valorA, Valores.valorB);
+                    System.out.println("Resultado: " + resultado);
+                    break;
+                case 2:
+                    resultado = calculadora.subtr(Valores.valorA, Valores.valorB);
+                    System.out.println("Resultado: " + resultado);
+                    break;
+                case 3:
+                    resultado = calculadora.multi(Valores.valorA, Valores.valorB);
+                    System.out.println("Resultado: " + resultado);
+                    break;
+                case 4:
+                    resultado = calculadora.div(Valores.valorA, Valores.valorB);
+                    System.out.println("Resultado: " + resultado);
+                    break;
+                default:
+                    System.out.println("Valor inválido!");
+                    break;
             }
         }catch(Exception exception){
             System.out.println("Digite um valor inteiro.");
